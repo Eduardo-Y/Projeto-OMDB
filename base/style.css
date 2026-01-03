@@ -1,0 +1,124 @@
+:root {
+    --primary-color: #29335c;
+    --light-primary: #3f4f8d;
+    --ligthest-color: #e9ebd5;
+    --secondary-color: #774936;
+    --light-secondary: #b97e64;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: "roboto", sans-serif;
+}
+
+h1 {
+    font-size: 2.4rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+label,
+input {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+a,
+p {
+    font-size: 1.2rem;
+}
+
+header,
+header div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-evenly;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: var(--ligthest-color);
+    padding: 2.5rem 2rem;
+    justify-content: space-between;
+}
+
+main {
+    height: 100vh;
+    padding: 12svh 0 0 0;
+    background-color: var(--ligthest-color);
+    color: var(--primary-color);
+    text-align: center;
+}
+
+footer {
+    background-color: var(--ligthest-color);
+    color: var(--primary-color);
+    text-align: center;
+    padding: 1rem 0;
+}
+
+#search-div {
+    width: 50%;
+}
+
+#search-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: inherit;
+}
+
+#search-form * {
+    border-radius: 0.6rem;
+    border-color: var(--ligthest-color);
+    background-color: transparent;
+}
+
+#search-button {
+    color: var(--ligthest-color);
+    padding: 0.6rem 0.8rem;
+}
+
+#search-button:hover {
+    background-color: #384372;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#search-button:active {
+    background-color: var(--ligthest-color);
+    color: #000;
+}
+
+#movie-title {
+    width: 50rem;
+}
+
+#movie-year {
+    width: 8rem;
+}
+
+#movie-title,
+#movie-year {
+    height: 3.2rem;
+    padding-left: 1rem;
+    color: var(--ligthest-color);
+}
+
+#film-logo {
+    font-size: 2.4rem;
+}
