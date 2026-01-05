@@ -1,0 +1,77 @@
+:root {
+    --primary-color: #29335c;
+    --light-primary: #3f4f8d;
+    --lightest-color: #e9ebd5;
+    --secondary-color: #774936;
+    --light-secondary: #b97e64;
+}
+
+#modal-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100svh;
+    transition: all 0.3s;
+}
+
+#modal-background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: var(--primary-color);
+    opacity: 0.3;
+}
+
+#modal-container {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 3rem;
+    background-color: var(--lightest-color);
+    border-radius: 1rem;
+}
+
+#modal-container img {
+    border-radius: 1rem;
+    border: solid 1px black;
+    min-height: 35rem;
+    min-width: 30rem;
+}
+
+#modal-main {
+    padding: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#movie-info {
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    justify-content: space-around;
+    max-width: 50rem;
+}
+
+#modal-button {
+    padding: 0.5rem 0;
+    width: 100%;
+    border: 0.3rem solid var(--primary-color);
+    border-radius: 1rem;
+    background-color: var(--lightest-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 1rem 0.1rem black;
+}
+
+#modal-button:hover,
+#modal-button:focus {
+    background-color: var(--primary-color);
+    color: var(--lightest-color);
+    outline: none;
+}

@@ -18,22 +18,31 @@ html {
 }
 
 h1 {
-    font-size: 2.4rem;
+    font-size: 2.8rem;
 }
 
 h2 {
+    font-size: 2.4rem;
+}
+
+h3 {
+    font-size: 2.2rem;
+}
+
+h4 {
     font-size: 2rem;
 }
 
 label,
-input {
+input,
+button {
     font-size: 1.8rem;
     font-weight: 600;
 }
 
 a,
 p {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
 }
 
 body {
@@ -63,6 +72,8 @@ header {
 }
 
 main {
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
     padding: 12svh 0 0 0;
     background-color: var(--ligthest-color);
@@ -98,11 +109,14 @@ footer {
     outline: none;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 #search-button:focus,
 #search-button:hover {
     background-color: #384372;
     color: #ffffff;
-    cursor: pointer;
 }
 
 #search-button:active {
@@ -128,4 +142,49 @@ footer {
 
 #film-logo {
     font-size: 2.4rem;
+}
+
+#movie-list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: all 0.3s;
+}
+
+.movie-container {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2rem;
+    transition: all 0.2s;
+}
+
+#remove-button {
+    margin-top: 2rem;
+    padding: 0.5rem 0;
+    border: 0.3rem solid var(--primary-color);
+    border-radius: 1rem;
+    background-color: var(--lightest-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 1rem 0.1rem black;
+}
+
+#remove-button:hover,
+#remove-button:focus {
+    background-color: var(--primary-color);
+    color: var(--lightest-color);
+    outline: none;
+}
+
+#movie-list-container img {
+    border: solid 1px black;
+    height: 45rem;
+    width: 30rem;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
 }
