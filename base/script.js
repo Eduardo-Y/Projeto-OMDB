@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             requestMovie(movieTitle, movieYear);
         } catch (error) {
-            console.error(error.message);
+            notie.alert({ type: "error", text: error.message });
         }
     });
 });
@@ -49,31 +49,54 @@ async function requestMovie(movieTitle, movieYear = "") {
             openModal(data);
         }
     } catch (error) {
-        console.error(error.message);
+        notie.alert({ type: "error", text: error.message });
     }
 }
 
-function addToList(posterURL = "") {
-    const $movieListContainer = document.querySelector("#movie-list-container");
-    const $movieList = document.querySelectorAll(".movie-list");
+function addToList(posterURL = "", loading = false) {
+    let savedMovies = localStorage.getItem("movies");
+
+    if (savedMovies != null) {
+        savedMovies = JSON.parse(savedMovies);
+    } else {
+        savedMovies = {};
+    }
+    const $savedMoviesContainer = document.querySelector(
+        "#movie-list-container"
+    );
+    const $savedMovies = document.querySelectorAll(".movie-list");
 
     if (posterURL == "") {
         const $poster = document.querySelector("#modal-poster");
         posterURL = $poster.src;
     }
 
-    $movieListContainer.innerHTML += `
-    <div id="movie-index-${$movieList.length}" class="movie-container movie-list">
-    <img src="${posterURL}" alt="Poster do filme" />
-    <button id="remove-button" onclick="removeMovie(this)">Remover Filme</button>
-    </div>`;
+    try {
+        if (!loading) {
+            for (let i = 0; i <= Object.values(savedMovies).length; i++) {
+                if (savedMovies[i] == posterURL) {
+                    throw new Error("Esse filme já esta na lista");
+                }
+            }
+            saveMovie(posterURL, savedMovies);
+        }
 
-    closeModal();
-    // saveMovie(posterURL);
+        $savedMoviesContainer.innerHTML += `
+                    <div id="movie-index-${$savedMovies.length}" class="movie-container movie-list">
+                    <img src="${posterURL}" alt="Poster do filme" />
+                    <button id="remove-button" onclick="removeMovie(this)">Remover Filme</button>
+                    </div>`;
+
+        closeModal();
+    } catch (error) {
+        notie.alert({ type: "error", text: error.message });
+    }
 }
 
 function removeMovie(element) {
-    const $movieListContainer = document.querySelector("#movie-list-container");
+    const $savedMoviesContainer = document.querySelector(
+        "#movie-list-container"
+    );
     const $movieDiv = element.parentNode;
     let savedMovies = localStorage.getItem("movies");
     savedMovies = JSON.parse(savedMovies);
@@ -81,37 +104,34 @@ function removeMovie(element) {
     $movieDiv.classList.add("hidden");
 
     setTimeout(() => {
-        $movieListContainer.removeChild($movieDiv);
+        $savedMoviesContainer.removeChild($movieDiv);
     }, 3 * 2000);
 
     const posterURL = $movieDiv.querySelector("img").src;
 
-    for (movie of Object.values(savedMovies)) {
-        if (movie.Poster == posterURL) {
-            delete savedMovies[movieTitle];
+    for (i of Object.keys(savedMovies)) {
+        if (savedMovies[i] == posterURL) {
+            delete savedMovies[i];
             localStorage.setItem("movies", JSON.stringify(savedMovies));
         }
     }
     window.location.reload();
 }
 
-// function saveMovie(posterURL) {
-//     if (movieList != null) {
-//         movieList = JSON.parse(movieList);
-//     } else {
-//         movieList = {};
-//     }
+function saveMovie(posterURL, savedMovies) {
+    const tam = Object.values(savedMovies).length;
 
-//     movieList[newMovie.Title] = newMovie;
-//     localStorage.setItem("movies", JSON.stringify(movieList));
-// }
+    savedMovies[tam] = posterURL;
+    localStorage.setItem("movies", JSON.stringify(savedMovies));
+}
 
 function loadMovies() {
     let savedMovies = localStorage.getItem("movies");
     savedMovies = JSON.parse(savedMovies);
+
     if (savedMovies != null) {
         for (data of Object.values(savedMovies)) {
-            addToList(data.Poster);
+            addToList(data, true);
         }
     }
 }

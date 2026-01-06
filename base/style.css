@@ -149,7 +149,6 @@ button:hover {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    transition: all 0.3s;
 }
 
 .movie-container {
